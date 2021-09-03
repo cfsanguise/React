@@ -1,0 +1,20 @@
+.sidebar {
+    grid-area: s;
+    background-color: green;
+    max-height: 100vh;
+    text-align: center;
+}
+
+.sidebar_link {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+  
+.sidebar_link a {
+    color: #fff;
+    text-decoration: none;
+}
+  
+.sidebar_link:last-child {
+    margin-top: 40px;
+}

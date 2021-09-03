@@ -1,0 +1,19 @@
+.post {
+    display: flex;
+    margin-bottom: 20px;
+}
+  
+.avatar {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #C79923;
+    margin-right: 20px;
+}
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}

@@ -17,3 +17,18 @@
     height: 50px;
     border-radius: 100%;
 }
+
+.post_like {
+    margin: auto;
+}
+
+.post_like span {
+    margin-right: 20px;
+    font-size: 20px;
+    color: blue;
+}
+
+.post_text {
+    width: 20%;
+}
+

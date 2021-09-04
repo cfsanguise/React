@@ -10,8 +10,8 @@ const MyPosts = () => {
         <button className={styles.posts_send} type='button'>Send</button>
       </div>
       <div className={styles.posts_wrapper}>
-        <Post />
-        <Post />
+        <Post message='A meme of the day' likes='5' />
+        <Post message='Oru' likes='20' />
       </div>
     </div>);
 }

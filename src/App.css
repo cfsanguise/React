@@ -10,3 +10,8 @@
   position: relative;
   grid-auto-flow: column;
 }
+
+
+.content {
+  grid-area: c;
+}

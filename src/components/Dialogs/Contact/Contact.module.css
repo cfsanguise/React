@@ -1,0 +1,19 @@
+.chats_contact {
+    color: #C1C2C8;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.active {
+    color: black;
+    font-size: 30px;
+}
+
+.navlink {
+    margin-bottom: 50px;
+    font-size: 30px;
+}
+
+.navlink:active {
+    margin-bottom: 50px;
+}

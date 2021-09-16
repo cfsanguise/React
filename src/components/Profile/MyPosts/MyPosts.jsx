@@ -1,17 +1,20 @@
 import React from 'react';
+import PostTextarea from '../../Send/postTextarea';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  let Posts = props.posts.posts.map(e => <Post key={getRandomInt(500) + e.likes ** 3 - 13 + 'index'} message={e.message} likes={e.likes} />);
+
     return(<div className={styles.posts}>
       <h1>Posts</h1>
-      <div className={styles.user_send}>
-        <textarea placeholder='write your post' className={styles.posts_textarea}></textarea>
-        <button className={styles.posts_send} type='button'>Send</button>
-      </div>
+      <PostTextarea dispatch={props.dispatch} currentPostText={props.currentPostText}/>
       <div className={styles.posts_wrapper}>
-        <Post message='A meme of the day' likes='5' />
-        <Post message='Oru' likes='20' />
+        {Posts}
       </div>
     </div>);
 }

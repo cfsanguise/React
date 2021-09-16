@@ -1,0 +1,37 @@
+.header {
+    margin-top: -7px;
+}
+
+.dialogs_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    position: relative;
+}
+
+.contacts {
+    height: 100vh;
+    border-right: 1px solid black;
+}
+
+.chats {
+    list-style: none;
+}
+
+.chats li::before {
+    content: "\2022"; 
+    color: #8493A7;
+    font-weight: bold; 
+    display: inline-block; 
+    width: 1em; 
+    margin-left: -1em; 
+}
+
+.chat_wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+

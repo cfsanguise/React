@@ -43,7 +43,7 @@ let store = {
             this._state.profilePage.currentPostText = action.postText;
             this._callSubscriber();
         } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.currentMessageText = action.dialogsPage.messageText;
+            this._state.dialogsPage.currentMessageText = action.currentMessageText;
             this._callSubscriber();
         } else if (action.type === SEND_MESSAGE) {
             let newMessage = {id:'zzfe4', message: this._state.dialogsPage.currentMessageText};
@@ -70,10 +70,10 @@ export const updateNewPostTextCreator = (postText) => {
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE});
   
-export const updateMessageTextCreator = (currentMessageText) => {
+export const updateMessageTextCreator = (messageText) => {
     return {
       type: UPDATE_NEW_MESSAGE_TEXT,
-      currentMessageText: currentMessageText
+      currentMessageText: messageText
     }
 }
 

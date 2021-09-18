@@ -18,6 +18,8 @@
 .user_send {
     display: flex;
     flex-direction: column;
+    margin-bottom: 5px;
+    margin-top: 10px;
 }
   
 .posts_send {

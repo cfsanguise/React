@@ -3,7 +3,7 @@ import styles from './Send.module.css';
 import { updateNewPostTextCreator } from '../../redux/state';
 import { addPostActionCreator } from '../../redux/state';
 
-const postTextarea = (props) => {
+const PostTextarea = (props) => {
 console.log(props);
     const postTextarea = React.createRef();
 
@@ -22,4 +22,4 @@ console.log(props);
       </div>);
 } 
 
-export default postTextarea;
+export default PostTextarea;

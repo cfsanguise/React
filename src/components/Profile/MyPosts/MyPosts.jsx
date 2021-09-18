@@ -1,5 +1,5 @@
 import React from 'react';
-import PostTextarea from '../../Send/postTextarea';
+import PostTextarea from '../../Send/PostTextarea';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 

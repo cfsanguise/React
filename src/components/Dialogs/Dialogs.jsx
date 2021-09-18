@@ -1,13 +1,14 @@
 import React from 'react';
-import MessageTextArea from '../Send/postTextarea';
+import MessageTextArea from '../Send/MessageTextArea';
 import Contact from './Contact/Contact';
 import styles from './Dialogs.module.css';
 import Message from './Message/Message';
 
 const Dialogs = (props) => {
-    console.log(props);
-    let dialogs = props.state.dialogs.map(e => <Contact key={e.id + e.name} id={e.id} name={e.name}/>);
-    let messages = props.state.messages.map(e => <Message key={e.message + 'msg'} message={e.message} />);
+
+    let state = props.store.getState().dialogsPage;
+    let dialogs = state.dialogs.map(e => <Contact key={e.id + e.name} id={e.id} name={e.name}/>);
+    let messages = state.messages.map(e => <Message key={e.message + 'msg'} message={e.message} />);
     return (
         <div className={styles.dialogs_wrapper}>
             <div className={styles.contacts}>
@@ -20,7 +21,7 @@ const Dialogs = (props) => {
                 <div className="message_wrappe">
                     {messages}
                 </div>
-                <MessageTextArea currentMessageText={props.state.currentMessageText} dispatch={props.dispatch} messageText={props.state.currentMessageText} />
+                <MessageTextArea store={props.store}  />
             </div>
         </div>
     );

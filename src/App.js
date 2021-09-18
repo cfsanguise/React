@@ -11,14 +11,13 @@ import Settings from './components/Settings/Settings';
 
 
 const App = (props) => {
-  console.log(props);
   return (
     <BrowserRouter>
       <div className='wrapper'>
         <Header />
         <Sidebar />
         <div className='content'>
-          <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} dispatch={props.dispatch} />}  />
+          <Route path='/dialogs' render={() => <Dialogs store={props.store} />}  />
           <Route path='/profile' render={() => <Profile dispatch={props.dispatch} profilePage={props.state.profilePage} />} />
           <Route path='/news' render={() => <News />} />
           <Route path='/music' render={() => <Music />} />

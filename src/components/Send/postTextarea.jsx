@@ -1,19 +1,17 @@
 import React from 'react';
 import styles from './Send.module.css';
-import { updateNewPostTextCreator } from '../../redux/state';
-import { addPostActionCreator } from '../../redux/state';
 
 const PostTextarea = (props) => {
-console.log(props);
     const postTextarea = React.createRef();
 
     const addPost = () => {
-      props.dispatch(addPostActionCreator());
+      props.addPost();
+      postTextarea.current.value = '';
     }
 
     const onTextareaChange = () => {
       const text = postTextarea.current.value;
-      props.dispatch(updateNewPostTextCreator(text));
+      props.onTextareaChange(text);
     }
     return(
       <div className={styles.user_send}>

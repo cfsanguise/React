@@ -1,0 +1,76 @@
+.user {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.user_avatar {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user_avatar img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.user_follow {
+    width: 80%;
+    display: block;
+    align-self: center;
+    background-color:#00894B;
+    text-align: center;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.user_unfollow {
+    color: red;
+}
+  
+.user_follow:active, .user_follow:hover, .user_follow:focus {
+    border: none;
+}
+  
+.user_follow:active {
+    transform: scale(0.9);
+}
+
+.user_info {
+    width: calc(100% - 160px);
+    border: 3px solid #E3E5E9;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-areas: 'f co' 's ci';
+    padding: 20px;
+    color: #A2AAB5;
+    font-weight: bold;
+}
+
+.user_fullname {
+    grid-area: f;
+}
+
+.user_status {
+    grid-area: s;
+    align-self: end;
+    font-weight: normal;
+}
+
+.user_country {
+    grid-area: co;
+    justify-self: center;
+}
+
+.user_city {
+    grid-area: ci;
+    justify-self: center;
+}

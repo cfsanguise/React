@@ -1,5 +1,5 @@
 import React from 'react';
-import { followAc, unfollowAc, setUsersAc } from '../../redux/usersReducer';
+import { followAc, unfollowAc, setUsersAc, setCurrentPageAc, setTotalCountAc } from '../../redux/usersReducer';
 import { connect } from 'react-redux';
 import Users from './Users';
 
@@ -11,15 +11,20 @@ function scroll() {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        follow: (userId) => dispatch(followAc(userId)),
-        unfollow: (userId) => dispatch(unfollowAc(userId)),
-        setUsers: (users) => dispatch(setUsersAc(users)),
+        follow: userId => dispatch(followAc(userId)),
+        unfollow: userId => dispatch(unfollowAc(userId)),
+        setUsers: users => dispatch(setUsersAc(users)),
+        setCurrentPage: page => dispatch(setCurrentPageAc(page)),
+        setTotalCount: num => dispatch(setTotalCountAc(num))
     }    
 };
 

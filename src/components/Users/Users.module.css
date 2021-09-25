@@ -23,3 +23,19 @@
 .show_more:active {
     transform: scale(0.9);
 }
+
+.users_pages {
+    margin-bottom: 20px;
+}
+
+.user_page {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.selected {
+    color: goldenrod;
+    font-size: 24px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Profile from './components/Profile/Profile';
-import Header from './components/Header/Header';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Sidebar from './components/Sidebar/Sidebar';
 import {BrowserRouter, Route} from 'react-router-dom';
 import News from './components/News/News';
@@ -15,11 +15,11 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className='wrapper'>
-        <Header />
+        <HeaderContainer />
         <Sidebar />
         <div className='content'>
           <Route path='/dialogs' render={() => <DialogsContainer />}  />
-          <Route path='/profile' render={() => <Profile />} />
+          <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
           <Route path='/news' render={() => <News />} />
           <Route path='/music' render={() => <Music />} />
           <Route path='/settings' render={() => <Settings />} />

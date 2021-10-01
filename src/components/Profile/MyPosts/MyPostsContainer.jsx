@@ -17,7 +17,7 @@ function scroll() {
 
 const mapStateToProps = (state) => {
   return {
-      posts: state.profilePage.posts.map(e => <Post key={getRandomInt(500) + e.likes ** 3 - 13 + 'index'} message={e.message} likes={e.likes} />),
+      posts: state.profilePage.posts.map(e => <Post smallPhoto={state.profilePage.profile.photos.small} key={getRandomInt(500) + e.likes ** 3 - 13 + 'index'} message={e.message} likes={e.likes} />),
       currentMessageText: state.profilePage.currentPostText
   }
 };

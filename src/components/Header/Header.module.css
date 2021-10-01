@@ -1,8 +1,20 @@
 .header {
     grid-area: h;
     background-color: green;
+    display: flex;
+    justify-content: space-between;
   }
   
 .header img {
     width: 100px;
+}
+
+.login_block a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.email, .login, .userId {
+  color: #fff;
+  font-size: 14px;
 }

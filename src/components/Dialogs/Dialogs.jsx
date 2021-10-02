@@ -3,7 +3,6 @@ import MessageTextArea from '../Send/MessageTextArea';
 import styles from './Dialogs.module.css';
 
 const Dialogs = (props) => {
-
     return (
         <div className={styles.dialogs_wrapper}>
             <div className={styles.contacts}>

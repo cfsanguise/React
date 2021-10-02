@@ -6,7 +6,7 @@ const Users = (props) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     if (pagesCount > 20 ) {
-        pagesCount = 50;
+        pagesCount = 20;
     }
 
     let pages = [];

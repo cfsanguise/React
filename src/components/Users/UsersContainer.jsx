@@ -1,54 +1,28 @@
 import React from 'react';
-import { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching, toggleIsFollowingInProgress } from '../../redux/usersReducer';
+import { setCurrentPage, toggleIsFollowingInProgress, getUsers, followUser, unfollowUser } from '../../redux/usersReducer';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
-import {usersAPI} from '../../api/api';
+import { compose } from 'redux';
+import WithAuthRedirect from '../Hoc/WithAuthRedirect';
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-
-        if (this.props.users.length === 0) {
-            this.props.toggleIsFetching(true);
-            usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalCount(data.totalCount);
-            });;
-            
-        } else {}
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     setCurrentPage = (page) => {
         this.props.setCurrentPage(page);
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(page, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-        });;
+        this.props.getUsers(page, this.props.pageSize);
     } 
 
     follow = (id) => {
-        this.props.toggleIsFollowingInProgress(true, id);
-        usersAPI.followUnfollow('follow', id).then(data => {
-            if (data.resultCode === 0) {
-                this.props.follow(id);
-                this.props.toggleIsFollowingInProgress(false, id);
-            }
-        }).finally(response => this.props.toggleIsFollowingInProgress(false, id));
-        
+        this.props.followUser(id);
     }
 
     unfollow = (id) => {
-        this.props.toggleIsFollowingInProgress(true, id);
-        usersAPI.followUnfollow('unfollow', id).then(data => {
-            if (data.resultCode === 0) {
-                this.props.unfollow(id);
-                this.props.toggleIsFollowingInProgress(false, id);
-            }
-            
-        }).finally(response => this.props.toggleIsFollowingInProgress(false, id));
+        this.props.unfollowUser(id);
     }
 
     render() {
@@ -71,5 +45,5 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching, toggleIsFollowingInProgress
-}    ) (UsersContainer);
+
+export default compose(connect(mapStateToProps, {followUser, setCurrentPage, getUsers: getUsers, toggleIsFollowingInProgress, unfollowUser}), WithAuthRedirect)(UsersContainer);

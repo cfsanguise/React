@@ -4,6 +4,8 @@ import Dialogs from './Dialogs';
 import Message from './Message/Message';
 import { sendMessageCreator, updateMessageTextCreator } from '../../redux/dialogsReducer';
 import { connect } from 'react-redux';
+import { WithAuthRedirect } from '../Hoc/WithAuthRedirect';
+import { compose } from 'redux';
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -18,7 +20,8 @@ function scroll() {
 const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogsPage.dialogs.map(e => <Contact key={e.id + e.name} id={e.id} name={e.name}/>),
-        messages: state.dialogsPage.messages.map(e => <Message key={e.message + 'msg' + getRandomInt(50000)} message={e.message} />)
+        messages: state.dialogsPage.messages.map(e => <Message key={e.message + 'msg' + getRandomInt(50000)} message={e.message} />),
+        isAuth: state.auth.isAuth
     }
 };
 
@@ -29,6 +32,4 @@ const mapDispatchToProps = (dispatch) => {
     }    
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs);
-
-export default DialogsContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps), WithAuthRedirect)(Dialogs);;

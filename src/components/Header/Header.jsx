@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import Preloader from '../Common/Preloader/Preloader';
 
 const Header = (props) => {
-    console.log(props);
     return(<header className={styles.header}>
             <img alt='logo' src={logo} />
             <div className={styles.login_block}>

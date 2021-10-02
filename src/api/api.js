@@ -11,22 +11,27 @@ const usersAPI = {
     getUsers (currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
     },
-    followUnfollow (action, id)  {
-        switch (action) {
-            case 'follow': {
-                return instance.post(`follow/${id}`).then(response => response.data);
-            }
-    
-            case 'unfollow': {
-                return instance.delete(`follow/${id}`).then(response => response.data);
-            }
-    
-            default : {
-                return instance.get(`follow/${id}`).then(response => response.data);
-            }
-        }
+
+    follow(id)  {
+        return instance.post(`follow/${id}`).then(response => response.data);
+    },
+
+    unfollow(id)  {
+        return instance.delete(`follow/${id}`).then(response => response.data);
+    },
+
+    getProfile(userId) {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => response.data);
     }
+
+}
+
+const authAPI = {
+    signIn() {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`);
+    },
+
 }
 
 
-export {usersAPI};
+export {usersAPI, authAPI};

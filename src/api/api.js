@@ -19,19 +19,32 @@ const usersAPI = {
     unfollow(id)  {
         return instance.delete(`follow/${id}`).then(response => response.data);
     },
+}
 
+const profileAPI = {
     getProfile(userId) {
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => response.data);
-    }
+        return instance.get(`profile/${userId}`).then(response => response.data);
+    },
 
+    getStatus(userId) {
+        return instance.get(`profile/status/${userId}`).then(response => response.data);
+    },
+    
+    updateStatus(status) {
+        return instance.put(`profile/status`, {status}).then(response => response.data);
+    },
 }
 
 const authAPI = {
     signIn() {
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`);
+        return instance.get(`auth/me`);
     },
+
+    signUp(email, password, rememberMe = false) {
+        return instance.post(`auth/login`, {email, password, rememberMe});
+    }
 
 }
 
 
-export {usersAPI, authAPI};
+export {usersAPI, authAPI, profileAPI};

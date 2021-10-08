@@ -43,7 +43,14 @@ export const signIn = () =>
                 dispatch(setUserData(id, login, email, true));
             } else {dispatch(toggleIsFetching(false));}
         });
-    }}
+}}
+
+export const signUp = (email, password, rememberMe = false) => 
+    {return dispatch => {
+        authAPI.signUp(email, password, rememberMe).then(response => {
+            console.log(response);
+        });
+}}
 
 
 export default authReducer;

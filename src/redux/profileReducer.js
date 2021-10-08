@@ -1,8 +1,9 @@
-import { usersAPI } from "../api/api";
+import { profileAPI } from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const SET_STATUS = 'SET-STATUS';
 
 const initialState = {
     posts: [{id:'thlrthl3', message:'Я пес', likes: 5000}, {id:'thlbfl3', message:'Я шаурма', likes: 50000}],
@@ -12,7 +13,7 @@ const initialState = {
         lookingForAJob: null,
         github: null,
         photos: {big: null, small: null},
-        aboutMe: null
+        status: ''
     },
     isFetching: false
 }
@@ -58,6 +59,10 @@ export const profileReducer = (state = initialState, action) => {
             return {...state, isFetching: action.isFetching}
         }
 
+        case SET_STATUS: {
+            return {...state, status: action.status}
+        }
+
         default: {
             return state;
         }
@@ -80,14 +85,41 @@ export const setUserProfile = (userInfo) => {
     }
 }
 
+export const setStatus = status => {
+    return {
+        type: SET_STATUS,
+        status
+    }
+}
+
 export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetching});
 
-export const getProfile = (userId) => 
+export const getProfile = userId => 
     {return dispatch => {
-        usersAPI.getProfile(userId).then(response => {
+        profileAPI.getProfile(userId).then(response => {
             dispatch(toggleIsFetching(false));
             dispatch(setUserProfile(response));
-        });
-    }}
+    });
+}}
+
+export const getStatus = userId => 
+    {return dispatch => {
+        profileAPI.getStatus(userId).then(response => {
+            dispatch(setStatus(response));
+    });
+}}
+
+export const updateStatus = status => 
+    {return dispatch => {
+        profileAPI.updateStatus(status).then(response => {
+            console.log(response);
+            if (response.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
+    });
+}}
+
+
+
 
 export default profileReducer;

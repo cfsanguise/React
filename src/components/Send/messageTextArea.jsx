@@ -1,24 +1,29 @@
 import React from 'react';
+import { reduxForm, Field } from 'redux-form';
 import styles from './Send.module.css';
+import {Textarea} from '../Common/FormsControls/FormsControls';
+import { maxLengthCreator, required } from '../../utils/validators/validators';
 
-const MessageTextArea = (props) => {
-    const messageTextarea = React.createRef();
+const maxLength10 = maxLengthCreator(400);
 
-    const addMessage = () => {
-      props.addMessage();
-      messageTextarea.current.value = '';
-    }
 
-    const onTextareaChange = () => {
-      const text = messageTextarea.current.value;
-      props.onTextareaChange(text)
+const MessageTextArea = props => {
+
+    const handleSubmit = e => {
+      e.preventDefault();
+      props.handleSubmit();
     }
 
     return(
-      <div className={styles.user_send}>
-        <textarea onChange={onTextareaChange} ref={messageTextarea} placeholder='write your message' className={styles.posts_textarea} value={props.currentPostText}/>
-        <button onClick={addMessage} className={styles.posts_send} type='button'>Send</button>
-      </div>);
+      <form onSubmit={handleSubmit}>
+        <div className={styles.user_send}>
+          <Field validate={[required, maxLength10]} component={Textarea} type='text' name='messageText' placeholder='write your message' className={styles.posts_textarea} value={props.currentPostText}/>
+          <button className={styles.posts_send}>Send</button>
+        </div>
+      </form>
+      );
 } 
 
-export default MessageTextArea;
+const MessageForm = reduxForm({form: 'message'})(MessageTextArea);
+
+export default MessageForm;

@@ -1,13 +1,11 @@
 import { profileAPI } from "../api/api";
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const SET_STATUS = 'SET-STATUS';
 
 const initialState = {
     posts: [{id:'thlrthl3', message:'Я пес', likes: 5000}, {id:'thlbfl3', message:'Я шаурма', likes: 50000}],
-    currentPostText: '',
     profile: {
         fullName: null,
         lookingForAJob: null,
@@ -28,20 +26,13 @@ export const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             const newPost = {
                 id: 5,
-                message: state.currentPostText,
+                message: action.currentPostText,
                 likes: getRandomInt(50000)
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
                 currentPostText: ''
-            }
-        }
-
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                currentPostText: action.postText
             }
         }
 
@@ -69,14 +60,7 @@ export const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-  
-export const updateNewPostTextCreator = (postText) => {
-    return {
-      type: UPDATE_NEW_POST_TEXT,
-      postText: postText
-    }
-}
+export const addPostActionCreator = currentPostText => ({type: ADD_POST, currentPostText});
 
 export const setUserProfile = (userInfo) => {
     return {

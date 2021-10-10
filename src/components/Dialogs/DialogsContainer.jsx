@@ -2,7 +2,7 @@ import React from 'react';
 import Contact from './Contact/Contact';
 import Dialogs from './Dialogs';
 import Message from './Message/Message';
-import { sendMessageCreator, updateMessageTextCreator } from '../../redux/dialogsReducer';
+import { sendMessageCreator } from '../../redux/dialogsReducer';
 import { connect } from 'react-redux';
 import { WithAuthRedirect } from '../Hoc/WithAuthRedirect';
 import { compose } from 'redux';
@@ -27,8 +27,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onTextareaChange: (text) => { dispatch(updateMessageTextCreator(text)); },
-        addMessage: () => { dispatch(sendMessageCreator()); scroll() },
+        addMessage: currentMessageText => { dispatch(sendMessageCreator(currentMessageText)); scroll() },
     }    
 };
 

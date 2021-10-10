@@ -1,8 +1,14 @@
 import React from 'react';
-import MessageTextArea from '../Send/MessageTextArea';
+import MessageForm from '../Send/MessageTextArea';
 import styles from './Dialogs.module.css';
 
 const Dialogs = (props) => {
+
+    const addMessage = values => {
+        props.addMessage(values.messageText);
+        values.messageText = '';
+    }
+
     return (
         <div className={styles.dialogs_wrapper}>
             <div className={styles.contacts}>
@@ -12,10 +18,10 @@ const Dialogs = (props) => {
                 </ul>
             </div>
             <div className={styles.chat_wrapper}>
-                <div className="message_wrappe">
+                <div className={styles.message_wrapper}>
                     {props.messages}
                 </div>
-                <MessageTextArea onTextareaChange={props.onTextareaChange} addMessage={props.addMessage}  />
+                <MessageForm onSubmit={addMessage} />
             </div>
         </div>
     );
